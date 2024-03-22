@@ -1,0 +1,3 @@
+[submodule "themes/emhugo"]
+	path = themes/emhugo
+	url = https://github.com/emmalexandria/emhugo
