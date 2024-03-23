@@ -58,10 +58,15 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"       
-      - name: setup-node
-        uses: actions/setup-node@v4
       - name: gzip
-        run: npm install -g gzip-cli && (npm bin)/gzip ./static/* -v -k -f --best {} \\;
+        uses: stefh/ghaction-CompressFiles@v1
+        with:
+          path: ./
+          depth: 5
+          extensions: '.css,.html,.js,.map,.ttf,.otf,.eot,.svg,.woff,.woff2,.xml,.txt,.md'
+          tools: 'brotli,gzip'
+          
+            
       - name: Upload artifac/
         uses: actions/upload-pages-artifact@v3
         with:
