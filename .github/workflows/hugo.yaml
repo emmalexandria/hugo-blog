@@ -57,8 +57,12 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
-      - name: Upload artifact
+            --baseURL "${{ steps.pages.outputs.base_url }}/"       
+      - name: setup-node
+        uses: actions/setup-node@v4
+      - name: gzip
+        run: npm install gzip-cli && find /static -type f \( -name '*.html' -o -name '*.js' -o -name '*.css'\) -exec $(npm bin)/gzip -v -k -f --best {} \\;
+      - name: Upload artifac/
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
