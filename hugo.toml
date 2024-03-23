@@ -3,13 +3,14 @@ languageCode = "en-us"
 title = "Emma Alexandria's Blog"
 theme = "emhugo"
 copyright = "© Emma Alexandria"
-pygmentsstyle = "monokai"
+pygmentsstyle = "catppuccin-latte"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
-mathjax = true
+
 [params]
 mode = "toggle"
 subtitle = "A simple blog for a simple minded developer."
+katex = true
 
 [markup]
 [markup.tableOfContents]

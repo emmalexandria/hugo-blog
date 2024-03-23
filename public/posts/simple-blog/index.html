@@ -17,14 +17,31 @@
 	<link href="http://localhost:1313/css/fonts.fd4474198ad92a14b524840944007f4a7e21f5de5c84fe6c41e00b00b376476c.css" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.16a1f3707b04135ca0f35d75b677ab0f4d98885b3f7a7383b0dfeb84d5462b9d.css" />
-	<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.bc5fc4b82105566d2ec09f15cab2aff6e7af35dd17744d5d5b17f917d376616b.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.184e351a197ea874b1849b1e37d227727a33e90ac5758f4fd225af80997b26d7.css" />
+	<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.bbeaa7e43a5b03d9b0159bab130730e977d742ee2c441ad3eef12c76b13a51e6.css"  disabled />
 	
 
 	
 	
 
 	
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+		onload="renderMathInElement(document.body);"></script>
+
+	
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			renderMathInElement(document.body, {
+				delimiters: [
+					{ left: "$$", right: "$$", display: true },
+					{ left: "$", right: "$", display: false }
+				]
+			});
+		});
+	</script>
 	
 
 	
@@ -45,6 +62,8 @@
 		<script src="http://localhost:1313/js/themetoggle.js"></script>
 		
 	</nav>
+
+
 </header>
 <main>
 	<article>
@@ -62,7 +81,7 @@
   <ul>
     <li><a href="#readability">Readability</a>
       <ul>
-        <li><a href="#building-a-readable-blog">Building a readable blog</a></li>
+        <li><a href="#the-rule-of-stopping">The rule of stopping</a></li>
       </ul>
     </li>
     <li><a href="#technical-simplicity">Technical simplicity</a></li>
@@ -99,41 +118,41 @@
   
 </figure>
 
-<p>In my view, raw HTML is already very readable. With a few minor tweaks (fonts, more whitespace, and truncated line length), it&rsquo;s about as good as you can get. As you add CSS, it slowly becomes more and more difficult to comprehend until it reaches the &lsquo;frontend dev showing off&rsquo; turning point. At this point, the site is a complete mess (if very pretty). This graph isn&rsquo;t perfect. It doesn&rsquo;t account for the effect that more HTML elements has on readability.  However, I still think it touches on something important. The web is becoming increasingly bloated in pursuit of aesthetics.</p>
-<p>For some reason, this doesn&rsquo;t seem to be a result of demands of clients or corporate wishes. Instead, developers seem to be leading the charge with ridiculous blogs. They&rsquo;ll smush together NextJS, Tailwind, some kind of CMS, Framer Motion, and a shitload of Javascript to create something they think will impress other people. For some reason the site now has page transitions, there&rsquo;s a floating table of contents to the side of every page, Disqus integration, and three billion other random features. In a way it feels insulting to me as someone trying to read their blog. It comes across as a level of disrespect for my time, energy, and desire to actually comprehend whatever it is that they&rsquo;re saying.</p>
+<p>In my view, raw HTML is already very readable. With a few minor tweaks (fonts, more whitespace, and truncated line length), it&rsquo;s about as good as you can get. As you add CSS, it slowly becomes more and more difficult to comprehend until it reaches the &lsquo;frontend dev showing off&rsquo; turning point. At this point, the site is a complete mess (if very pretty). This graph isn&rsquo;t perfect. It doesn&rsquo;t account for the effect of more HTML elements on readability.  However, I still think it touches on something important. The web is becoming increasingly bloated in pursuit of aesthetics.</p>
+<p>For some reason, this doesn&rsquo;t seem to be a result of demands of clients or corporate wishes. Instead, developers seem to be leading the charge with ridiculous blogs. They&rsquo;ll smush together NextJS, Tailwind, some kind of CMS, Framer Motion, and a shitload of Javascript to create something they think will impress other people. For some reason the site now has page transitions, there&rsquo;s a floating table of contents to the side of every page, Disqus integration, a complex taxonomy system, etc. I find this complexity maddening as someone trying to read their blog. It appears like as a level of disrespect for my time, energy, and desire to actually comprehend whatever it is that they&rsquo;re saying.</p>
 <p>In my view, blogs should attempt to be as visually simple as they can without comprising whatever aesthetic vision the developer has.</p>
-<h2 id="building-a-readable-blog">Building a readable blog</h2>
+<h2 id="the-rule-of-stopping">The rule of stopping</h2>
 <p>Building something readable is about restraint. Your blog page doesn&rsquo;t need that many elements. It just needs to render some Markdown. It&rsquo;s a simple process really:</p>
 <ol>
 <li>Define a typographical hierarchy.</li>
-<li>Create some custom styling for links.</li>
+<li>Set up navigation.</li>
 <li>Stop.</li>
 </ol>
-<p>Step 3 is really the difficult part. It can be very tempting to add just <em>one more feature</em>. Once your blog can render posts and look relatively nice you have to stop. Of course, there are some other niceties like syntax highlighting and a table of contents. The difference is that those features only add to the reading experience when needed, instead of inserting their presence in every simple post.</p>
+<p>Step 3 is really the difficult part. It can be very tempting to add just <em>one more feature</em>. Once your blog can render posts and look relatively nice you it&rsquo;s time to stop adding new things. There are some additions that can be nice to have, like syntax highlighting and an RSS feed. Those are fine to add once you need them, but the reason they are an exception to the rule of stopping is that they likely positively imapct the reading of the actual blog text, instead of adding more random crap.</p>
 <h1 id="technical-simplicity">Technical simplicity</h1>
 <p>Stop putting goddamn Javascript in your blogs. Seriously. You should be rawdogging HTML &amp; CSS like its 1996. This site contains a single Javascript file.
 Here&rsquo;s all it does:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setTheme</span>(<span style="color:#a6e22e">mode</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">setItem</span>(<span style="color:#e6db74">&#34;theme-storage&#34;</span>, <span style="color:#a6e22e">mode</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">mode</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;dark&#34;</span>) {
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;darkModeStyle&#34;</span>).<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;dark-mode-toggle&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[long ass svg]&#39;</span>;
-</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">mode</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;light&#34;</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">docume</span>  <span style="color:#a6e22e">nt</span>.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;darkModeStyle&#34;</span>).<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;dark-mode-toggle&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[long ass svg]&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#4c4f69;background-color:#eff1f5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#d20f39">function</span> setTheme(mode) {
+</span></span><span style="display:flex;"><span>  localStorage.setItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>, mode);
+</span></span><span style="display:flex;"><span>  <span style="color:#8839ef">if</span> (mode <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;dark&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#04a5e5">document</span>.getElementById(<span style="color:#40a02b">&#34;darkModeStyle&#34;</span>).disabled <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#04a5e5">document</span>.getElementById(<span style="color:#40a02b">&#34;dark-mode-toggle&#34;</span>).innerHTML <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#40a02b">&#39;[long ass svg]&#39;</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#8839ef">else</span> <span style="color:#8839ef">if</span> (mode <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;light&#34;</span>) {
+</span></span><span style="display:flex;"><span>    docume  nt.getElementById(<span style="color:#40a02b">&#34;darkModeStyle&#34;</span>).disabled <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#04a5e5">document</span>.getElementById(<span style="color:#40a02b">&#34;dark-mode-toggle&#34;</span>).innerHTML <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#40a02b">&#39;[long ass svg]&#39;</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">toggleTheme</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">&#34;theme-storage&#34;</span>) <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;light&#34;</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTheme</span>(<span style="color:#e6db74">&#34;dark&#34;</span>);
-</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">&#34;theme-storage&#34;</span>) <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;dark&#34;</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTheme</span>(<span style="color:#e6db74">&#34;light&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#d20f39">function</span> toggleTheme() {
+</span></span><span style="display:flex;"><span>  <span style="color:#8839ef">if</span> (localStorage.getItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>) <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;light&#34;</span>) {
+</span></span><span style="display:flex;"><span>    setTheme(<span style="color:#40a02b">&#34;dark&#34;</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#8839ef">else</span> <span style="color:#8839ef">if</span> (localStorage.getItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>) <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;dark&#34;</span>) {
+</span></span><span style="display:flex;"><span>    setTheme(<span style="color:#40a02b">&#34;light&#34;</span>);
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">savedTheme</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">localStorage</span>.<span style="color:#a6e22e">getItem</span>(<span style="color:#e6db74">&#34;theme-storage&#34;</span>) <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;light&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setTheme</span>(<span style="color:#a6e22e">savedTheme</span>);
+</span></span><span style="display:flex;"><span><span style="color:#d20f39">var</span> savedTheme <span style="color:#04a5e5;font-weight:bold">=</span> localStorage.getItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>) <span style="color:#04a5e5;font-weight:bold">||</span> <span style="color:#40a02b">&#34;light&#34;</span>;
+</span></span><span style="display:flex;"><span>setTheme(savedTheme);
 </span></span></code></pre></div><p>Dark mode support got an exception for accessibility reasons. That&rsquo;s it. This site just runs on Hugo. I initially built it in Zola. It&rsquo;s dead simple and going nowhere. That is all a blog needs to be. I don&rsquo;t think that your blog is where you show off your prowess as a developer. It&rsquo;s like web developers are a superhero with a really shitty power of overcomplicating things, and they leap into battle to build the world&rsquo;s most overengineered blog. <em>Nobody</em> is impressed by your blog. <em>It&rsquo;s a fucking blog</em>. Every single developer worth paying a cent can build some hypermodern blog with an insane bundle size. So why are we still doing this? Why not build a simple blog with a SSG that&rsquo;ll just work?</p>
 <h1 id="why-do-developers-do-this">Why do developers do this?</h1>
 <p>I think the fundamental problem is an inversion of what makes your blog interesting to people. Developers often seem to believe that people will care about their blog if their blog is a technically interesting website. This is simply untrue. The most prodigious developers of the last 70 years could create blogs that were literally raw HTML, and people would read them. The blog itself is not important.</p>
