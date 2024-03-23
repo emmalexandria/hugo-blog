@@ -3,7 +3,7 @@ title: "Rust is nice at programming"
 date: 2024-03-23
 description: "Why Rust is great even if you aren't a giga memory nerd"
 tags: [Rust, Programming]
-draft: true
+draft: false
 ---
 
 Rust is a language which is evangelised primarily for it's safety. I'm going to be real here. I like writing safe programs, but I don't really care that much. I was never a C or C++ developer. I did follow [javid9x's fantastic tutorials](https://www.youtube.com/@javidx9) when I was younger, but my only real attempt to build something complex in either language was a sudoku solver which never worked because my code for drawing the board kept segfaulting. However, I still really like and appreciate Rust. If you aren't a developer with a particular care for memory safety, I want to try and convince you that Rust is still worth it and a great language to learn. There may sometimes be gaps between the part of the article where code is shown and where it's explained. This article is also very code heavy, so be ready. 
