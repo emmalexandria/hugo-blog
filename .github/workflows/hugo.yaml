@@ -57,8 +57,17 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
-      - name: Upload artifact
+            --baseURL "${{ steps.pages.outputs.base_url }}/"       
+      - name: gzip
+        uses: stefh/ghaction-CompressFiles@v1
+        with:
+          path: ./
+          depth: 5
+          extensions: '.css,.html,.js,.map,.ttf,.otf,.eot,.svg,.woff,.woff2,.xml,.txt,.md'
+          tools: 'brotli,gzip'
+          
+            
+      - name: Upload artifac/
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
