@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Emma Alexandria's Blog"
 theme = "emhugo"
 copyright = "© Emma Alexandria"
-pygmentsstyle = "catppuccin-latte"
+pygmentsstyle = "catppuccin-frappe"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 

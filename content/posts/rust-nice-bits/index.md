@@ -1,12 +1,12 @@
 ---
 title: "Rust is nice at programming"
-date: 2024-03-22
+date: 2024-03-23
 description: "Why Rust is great even if you aren't a giga memory nerd"
 tags: [Rust, Programming]
 draft: true
 ---
 
-Rust is a language which is evangelised primarily for it's safety. I'm going to be real here. I like writing safe programs, but I don't really care. I was never a C or C++ developer. I did follow [javid9x's fantastic tutorials](https://www.youtube.com/@javidx9) when I was younger, but my only real attempt to build something complex in either language was a sudoku solver which never worked because my code for drawing the board kept segfaulting. However, I still really like and appreciate Rust. If you aren't a developer with particular care for memory safety either, I want to try and convince you that Rust is still worth it, and a great language to learn. There may sometimes be gaps between the part of the article where code is shown and where it's explained. This article is also very code heavy, so be ready. 
+Rust is a language which is evangelised primarily for it's safety. I'm going to be real here. I like writing safe programs, but I don't really care that much. I was never a C or C++ developer. I did follow [javid9x's fantastic tutorials](https://www.youtube.com/@javidx9) when I was younger, but my only real attempt to build something complex in either language was a sudoku solver which never worked because my code for drawing the board kept segfaulting. However, I still really like and appreciate Rust. If you aren't a developer with a particular care for memory safety, I want to try and convince you that Rust is still worth it and a great language to learn. There may sometimes be gaps between the part of the article where code is shown and where it's explained. This article is also very code heavy, so be ready. 
 
 {{<toc>}}
 
@@ -42,7 +42,7 @@ impl Into<String> for SillyGuy {
 }
 ```
 
-It would let you do the same exact thing: get the debug representation of an object and pass it into Regex. However, that is not an implicit conversion in Rust. It has to be explicitly written out in code, available for reference. The closest equivalent to implicit type casting that's really available is using the `as` keyword, which will silently truncate data if one value doesn't fit in its new type.
+It would let you do the same exact thing: get the debug representation of an object and pass it into Regex. However, that is not an implicit conversion in Rust. It has to be explicitly written out in code, available for reference. The closest equivalent to implicit type casting that's really available is using the `as` keyword, which will silently truncate data if the value doesn't fit in its new type.
 
 This flexibility also gives you the power to write some really fucked up code if you want. Here's a classic of mine:  
 
@@ -58,9 +58,9 @@ where
     }
 }
 
-impl UnsafeSub<i64> for usize {}
+impl UnsafeSub<isize> for usize {}
 ```
-This code allows you to subtract two `usize` values and receive a signed 64-bit integer. However, if either of the usize values use all 64 bits, the code will crash and burn. Fun!
+This code allows you to subtract two `usize` values and receive a signed `isize` value. However, if either of the `usize` values use all 64 bits, the code will crash and burn. Fun!
 
 Rust explicitly tells you what data can do, and lets you define your own transformations. Rust *doesn't do* implicit data transformation, and if you use the tools Rust provides correctly, all your data conversions will follow a predictable pattern. I find this to be a huge boost to productivity, and by the end of a session programming in Rust I nearly always end up with code which is trivial to follow, if not exactly beautiful. Programming is universally about three basic steps, repeated as many times as necessary:
 
@@ -68,7 +68,7 @@ Rust explicitly tells you what data can do, and lets you define your own transfo
 2. Transform data
 3. Output data
 
-Rust makes the entire second step explicit and consistent, which is hugely helpful for writing good code without struggle. Unlike in Javascript, a function cannot just coerce your object to a debug string without requiring that it implement `Debug`. Unlike C, casting a double into a 32 bit integer requires use of `as` which explicitly states you are fine with data loss. 
+Rust makes the entire second step explicit and consistent, which is hugely helpful for writing good code without struggle. Unlike in Javascript, a function cannot just coerce your object to a debug string without requiring that it implement `Debug`. Unlike C, casting a 64 bit integer into a 32 bit integer requires use of `as` which explicitly states you are fine with data loss. In C, it'll just treat it like any other type conversion. 
 
 # Traits
 
@@ -109,7 +109,7 @@ fn main() {
 
 ```
 
-Isn't that just lovely? We were able to define custom output formatting for our type which will be automatically picked up by any of Rust's formatting macros (`println!`, `print!`, `eprintln!`, etc). The `Display` trait is built into Rust, and is used across codebases and crates. This is what makes traits so magical. There are many other extremely useful traits, such as the previously shown `TryInto`, and ones like `Error`, `From`, `Default`, `AsRef<T>`, etc. Furthermore, you can define traits on any type, including primitives. Rust libraries can actually extend the functionality of the language in a completely natural way! For example, the extremely popular crate [colored](https://docs.rs/colored/latest/colored/) (which provides code to print colored text using ANSI escape codes) implements its functionality through a trait. It implements the `Colorize` trait on Rust's primitive string type. If you import that trait from the library, you can then use its defined functions on any Rust string like you would use a function from the standard library.
+Isn't that just lovely? We were able to define custom output formatting for our type which will be automatically picked up by any of Rust's formatting macros (`println!`, `print!`, `eprintln!`, etc). The `Display` trait is built into Rust, and is used across codebases and crates. This is what makes traits so magical. There are many other extremely useful traits, such as the previously shown `TryInto`, and ones like `Error`, `From`, `Default`, `AsRef<T>`, etc. Furthermore, you can define traits on any type, including primitives. Rust libraries can actually extend the functionality of the language in a completely natural way! For example, the extremely popular crate [colored](https://docs.rs/colored/latest/colored/) (which provides code to print colored text using ANSI escape codes) works via a trait. It implements the `Colorize` trait on Rust's primitive string type. If you import that trait from the library, you can then use its defined functions on any Rust string like you would use a function from the standard library.
 
 ```rust
 println!("{}", "Some green text".green())
@@ -125,7 +125,7 @@ pub fn path_to_string<P: AsRef<Path>>(path: P) -> String {
 }
 ```
 
-`P`, the generic type, is constrained to types that implement `AsRef<Path>`. This is because that is the only interface necessary to convert either of Rust's path types (`PathBuf` and `Path`) into a string. This code will also work on any other type which implements `AsRef<Path>`, from any library.
+`P`, the generic type, is constrained to types that implement `AsRef<Path>`. This is because that is the only interface necessary to convert either of Rust's path types (`PathBuf` and `Path`) into a string. This code will also work on any other type which implements `AsRef<Path>` from any library.
 
 This kind of trait behaviour lets you implement code which feels like it's part of the standard library in quality and behaviour. The best part is that the new code you wrote won't just feel like it's part of the standard library, it will interoperate with it flawlessly. 
 
@@ -181,7 +181,7 @@ fn main() {
 
 The important thing to notice here is the ability to define a type which does not necessarily always have the same fields. We can easily represent an IP address as either IPv6 or IPv4, and any function can take a value of `IPAddress`. Enum variants can have practically anything stored in them, including custom types like structs. You could even have an enum variant which contains a struct which contains an enum variant which contains a struct. 
 
-This model of enums gives you a very powerful ability to pass around information. When used with match, it can be used to ensure that your program must have a valid state at all times. match is incredibly powerful when used with enums because it works alongside the type system. The compiler ensures your match statement handles all possible cases, and warns you if one of your cases is not reachable. 
+This model of enums gives you a very powerful ability to pass around information. When used with match, it can be used to ensure that your program must have a valid state at all times. The compiler ensures your match statement handles all possible cases, and warns you if one of your cases is not reachable. 
 
 As an example of a situation where we want to ensure our state is valid, consider parsing arguments. Your subcommands could be represented as an enum, with each variant taking the arguments of that subcommand as fields. You can then match the passed subcommand and create an enum variant. If you can't get all of the data required by that variant out of your arguments, you have an invalid state and the program has to exit. If used correctly, enums can make it really difficult to reach an invalid state within your application.
 
@@ -253,23 +253,18 @@ struct FileError {
   error: Box<dyn std::error::Error>,
   file_path: String
 }
-//error is a heap allocated 'trait object', 
-//representing any object that implements Error that is also object safe
+//error is a heap allocated 'trait object'.
+//Represents a trait implementation on a specific object.
 
 //Constructor for a new error
 impl FileError {
-  pub fn new<T: AsRef<std::path::Path>>(error: Box<dyn std::error::Error>, file_path: T) -> FileError {
+  pub fn new<T: AsRef<std::path::Path>>
+  (error: Box<dyn std::error::Error>, file_path: T) -> FileError {
     FileError {
         error,
         file_path: file_path.as_ref().to_string_lossy().to_string()
     }
   }
-}
-
-impl std::fmt::Display for FileError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        write!(f, "{} caused by {}", self.error, self.file_path)
-    }
 }
 
 //Trait 
@@ -278,6 +273,13 @@ impl std::error::Error for FileError{
         Some(&*self.error)
     }
 } 
+
+//Required by std::error::Error
+impl std::fmt::Display for FileError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(f, "{} caused by {}", self.error, self.file_path)
+    }
+}
 ```
 
 Now we have a custom error type with all of the required traits to be used exactly like any other error. We can then use it in our newly defined function with `.map_err`, a function defined on Result which takes a closure which is run if an error is encountered.
@@ -295,8 +297,10 @@ fn delete_files(paths: Vec<&std::path::Path>) -> Result<(), FileError> {
 With a very simple change, we can now track additional context alongside our error value, and succintly handle any errors that arise from the `remove_file` call.
 
 # Conclusion
-I'm not sure how convincing I have been in this blog post, but I hope I've said enough to convince you to give Rust a try. Typically, Rust evangelists tend to hide the slightly more complicated parts of the language (a few of which have been displayed here) to avoid scaring people off. I disagree with this approach. Rust's biggest strengths lie in its scariest looking parts, and programmers aren't babies. `Box<dyn std::error::Error>` or `fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>` might look scary, especially if you aren't familiar with any low level programming. I think you should give Rust a try anyway. It's shockingly easy to learn, and I think you might agree with some of my favourite things about it.
+I'm not sure how convincing I have been in this blog post, but I hope I've said enough to get you to give Rust a try. Typically, Rust evangelists tend to hide the slightly more complicated parts of the language (a few of which have been displayed here) to avoid scaring people off. I disagree with this approach. Rust's biggest strengths lie in its scariest looking parts, and programmers aren't babies. `Box<dyn std::error::Error>` or `fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>` might look scary, especially if you aren't familiar with any low level programming. I think you should give Rust a try anyway. Rust frontloads the hard parts, and beats your ass repeatedly, but from there the difficulty remains fairly constant regardless of the complexity of what you're doing. Languages like Javascript and Python put off introducing complexity for as long as possible at great expense, and become extremely difficult to work with.
+
 
 To steal a great diagram from [No Boilerplate](https://www.youtube.com/watch?v=2hXNd6x9sZs):
 
 {{<simg src="rustvjs.png" caption="Difficulty curves">}}
+

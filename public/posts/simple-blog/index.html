@@ -14,11 +14,11 @@
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="The joy of a simple blog"/>
 <meta name="twitter:description" content="Why on earth do developers keep building these dumbass blogs?"/>
 
-	<link href="http://localhost:1313/css/fonts.fd4474198ad92a14b524840944007f4a7e21f5de5c84fe6c41e00b00b376476c.css" rel="stylesheet">
+	<link href="http://localhost:1313/css/fonts.573696ddff1e77c5d637c4b10b7f60309d9cae64f5d82fc4c3e4e4d2cecc8b4c.css" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.184e351a197ea874b1849b1e37d227727a33e90ac5758f4fd225af80997b26d7.css" />
-	<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.bbeaa7e43a5b03d9b0159bab130730e977d742ee2c441ad3eef12c76b13a51e6.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.8912f4e36ebf88a59b241924b24b15e604d5d50e23d841c94f03bdcf36bfbb2c.css" />
+	<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.bbd050547d7c5ed45abf0f7e4aa608334d2d3c273beb763367d132d7c5747975.css"  disabled />
 	
 
 	
@@ -132,26 +132,26 @@
 <h1 id="technical-simplicity">Technical simplicity</h1>
 <p>Stop putting goddamn Javascript in your blogs. Seriously. You should be rawdogging HTML &amp; CSS like its 1996. This site contains a single Javascript file.
 Here&rsquo;s all it does:</p>
-<div class="highlight"><pre tabindex="0" style="color:#4c4f69;background-color:#eff1f5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#d20f39">function</span> setTheme(mode) {
-</span></span><span style="display:flex;"><span>  localStorage.setItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>, mode);
-</span></span><span style="display:flex;"><span>  <span style="color:#8839ef">if</span> (mode <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;dark&#34;</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#04a5e5">document</span>.getElementById(<span style="color:#40a02b">&#34;darkModeStyle&#34;</span>).disabled <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">false</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#04a5e5">document</span>.getElementById(<span style="color:#40a02b">&#34;dark-mode-toggle&#34;</span>).innerHTML <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#40a02b">&#39;[long ass svg]&#39;</span>;
-</span></span><span style="display:flex;"><span>  } <span style="color:#8839ef">else</span> <span style="color:#8839ef">if</span> (mode <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;light&#34;</span>) {
-</span></span><span style="display:flex;"><span>    docume  nt.getElementById(<span style="color:#40a02b">&#34;darkModeStyle&#34;</span>).disabled <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">true</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#04a5e5">document</span>.getElementById(<span style="color:#40a02b">&#34;dark-mode-toggle&#34;</span>).innerHTML <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#40a02b">&#39;[long ass svg]&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#e78284">function</span> setTheme(mode) {
+</span></span><span style="display:flex;"><span>  localStorage.setItem(<span style="color:#a6d189">&#34;theme-storage&#34;</span>, mode);
+</span></span><span style="display:flex;"><span>  <span style="color:#ca9ee6">if</span> (mode <span style="color:#99d1db;font-weight:bold">===</span> <span style="color:#a6d189">&#34;dark&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#99d1db">document</span>.getElementById(<span style="color:#a6d189">&#34;darkModeStyle&#34;</span>).disabled <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#99d1db">document</span>.getElementById(<span style="color:#a6d189">&#34;dark-mode-toggle&#34;</span>).innerHTML <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#a6d189">&#39;[long ass svg]&#39;</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#ca9ee6">else</span> <span style="color:#ca9ee6">if</span> (mode <span style="color:#99d1db;font-weight:bold">===</span> <span style="color:#a6d189">&#34;light&#34;</span>) {
+</span></span><span style="display:flex;"><span>    docume  nt.getElementById(<span style="color:#a6d189">&#34;darkModeStyle&#34;</span>).disabled <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#99d1db">document</span>.getElementById(<span style="color:#a6d189">&#34;dark-mode-toggle&#34;</span>).innerHTML <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#a6d189">&#39;[long ass svg]&#39;</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d20f39">function</span> toggleTheme() {
-</span></span><span style="display:flex;"><span>  <span style="color:#8839ef">if</span> (localStorage.getItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>) <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;light&#34;</span>) {
-</span></span><span style="display:flex;"><span>    setTheme(<span style="color:#40a02b">&#34;dark&#34;</span>);
-</span></span><span style="display:flex;"><span>  } <span style="color:#8839ef">else</span> <span style="color:#8839ef">if</span> (localStorage.getItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>) <span style="color:#04a5e5;font-weight:bold">===</span> <span style="color:#40a02b">&#34;dark&#34;</span>) {
-</span></span><span style="display:flex;"><span>    setTheme(<span style="color:#40a02b">&#34;light&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#e78284">function</span> toggleTheme() {
+</span></span><span style="display:flex;"><span>  <span style="color:#ca9ee6">if</span> (localStorage.getItem(<span style="color:#a6d189">&#34;theme-storage&#34;</span>) <span style="color:#99d1db;font-weight:bold">===</span> <span style="color:#a6d189">&#34;light&#34;</span>) {
+</span></span><span style="display:flex;"><span>    setTheme(<span style="color:#a6d189">&#34;dark&#34;</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#ca9ee6">else</span> <span style="color:#ca9ee6">if</span> (localStorage.getItem(<span style="color:#a6d189">&#34;theme-storage&#34;</span>) <span style="color:#99d1db;font-weight:bold">===</span> <span style="color:#a6d189">&#34;dark&#34;</span>) {
+</span></span><span style="display:flex;"><span>    setTheme(<span style="color:#a6d189">&#34;light&#34;</span>);
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#d20f39">var</span> savedTheme <span style="color:#04a5e5;font-weight:bold">=</span> localStorage.getItem(<span style="color:#40a02b">&#34;theme-storage&#34;</span>) <span style="color:#04a5e5;font-weight:bold">||</span> <span style="color:#40a02b">&#34;light&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">var</span> savedTheme <span style="color:#99d1db;font-weight:bold">=</span> localStorage.getItem(<span style="color:#a6d189">&#34;theme-storage&#34;</span>) <span style="color:#99d1db;font-weight:bold">||</span> <span style="color:#a6d189">&#34;light&#34;</span>;
 </span></span><span style="display:flex;"><span>setTheme(savedTheme);
 </span></span></code></pre></div><p>Dark mode support got an exception for accessibility reasons. That&rsquo;s it. This site just runs on Hugo. I initially built it in Zola. It&rsquo;s dead simple and going nowhere. That is all a blog needs to be. I don&rsquo;t think that your blog is where you show off your prowess as a developer. It&rsquo;s like web developers are a superhero with a really shitty power of overcomplicating things, and they leap into battle to build the world&rsquo;s most overengineered blog. <em>Nobody</em> is impressed by your blog. <em>It&rsquo;s a fucking blog</em>. Every single developer worth paying a cent can build some hypermodern blog with an insane bundle size. So why are we still doing this? Why not build a simple blog with a SSG that&rsquo;ll just work?</p>
 <h1 id="why-do-developers-do-this">Why do developers do this?</h1>
