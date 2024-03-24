@@ -10,7 +10,6 @@ pygmentscodefencesguesssyntax = true
 [params]
 mode = "toggle"
 subtitle = "A simple blog for a simple minded developer."
-katex = true
 
 [markup]
 [markup.tableOfContents]

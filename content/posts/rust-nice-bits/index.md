@@ -94,8 +94,8 @@ impl Person {
 }
 
 //Implement the trait Display, which allows an arbitrary type to be printed to stdout
-impl std::fmt::Display for Person {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error> {
         write!(f, "{} is {} and works as a {}", self.name, self.age, self.occupation)
     }
 }
@@ -117,7 +117,7 @@ println!("{}", "Some green text".green())
 
 Traits can also be specified in generic functions to constrain what types can be passed in. For example, a simple function to convert a path to a string might look like this:
 ```rust
-pub fn path_to_string<P: AsRef<Path>>(path: P) -> String {
+pub fn path_to_string<P: AsRef<path::Path>>(path: P) -> String {
     match path.as_ref().to_str() {
         Some(s) => s.to_string(),
         None => path.as_ref().to_string_lossy().to_string(),
@@ -153,8 +153,8 @@ enum IPAddress {
     IPv6 { addr: [u16; 8] },
 }
 
-impl std::fmt::Display for IPAddress {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl fmt::Display for IPAddress {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             IPAddress::IPv4 { addr } => {
                 write!(f, "{}.{}.{}.{}", addr[0], addr[1], addr[2], addr[3])
@@ -225,7 +225,7 @@ pub enum Result<T,E> {
 The most powerful part of Rust's error handling however is the `Try` trait. Both `Result` and `Option` implement `Try`, which allows the use of the suffix `?`. Explaining what `?` does concisely requires a code example:
 
 ```rust
-fn delete_file(file: &Path) -> std::io::Result<()> {
+fn delete_file(file: &path::Path) -> io::Result<()> {
   fs::remove_file(file)?;
   Ok(())
 }
@@ -236,9 +236,9 @@ In this code, our function returns a `std::io::Result<()>`, which is equivalent 
 
 As values, Rust errors can implement traits. Most implement the `Error` trait. This allows the creation of a wrapper error which allows you to keep track of additional error context. Going back to the above example, imagine we wanted one function to delete many files instead of just one.  
 ```rust
-fn delete_files(paths: Vec<&std::path::Path>) -> std::io::Result<()> {
+fn delete_files(paths: Vec<&path::Path>) -> io::Result<()> {
   for path in paths {
-    std::fs::remove_file(path)?;
+    fs::remove_file(path)?;
   }
 
   Ok(())
@@ -250,7 +250,7 @@ The problem with this approach is that `std::io::Error` doesn't contain any info
 ```rust 
 #[derive(Debug)] 
 struct FileError {
-  error: Box<dyn std::error::Error>,
+  error: Box<dyn error::Error>,
   file_path: String
 }
 //error is a heap allocated 'trait object'.
@@ -258,8 +258,8 @@ struct FileError {
 
 //Constructor for a new error
 impl FileError {
-  pub fn new<T: AsRef<std::path::Path>>
-  (error: Box<dyn std::error::Error>, file_path: T) -> FileError {
+  pub fn new<T: AsRef<path::Path>>
+  (error: Box<dyn error::Error>, file_path: T) -> FileError {
     FileError {
         error,
         file_path: file_path.as_ref().to_string_lossy().to_string()
@@ -268,15 +268,15 @@ impl FileError {
 }
 
 //Trait 
-impl std::error::Error for FileError{
-    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+impl error::Error for FileError{
+    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         Some(&*self.error)
     }
 } 
 
 //Required by std::error::Error
-impl std::fmt::Display for FileError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+impl fmt::Display for FileError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error> {
         write!(f, "{} caused by {}", self.error, self.file_path)
     }
 }
@@ -285,9 +285,9 @@ impl std::fmt::Display for FileError {
 Now we have a custom error type with all of the required traits to be used exactly like any other error. We can then use it in our newly defined function with `.map_err`, a function defined on Result which takes a closure which is run if an error is encountered.
 
 ```rust
-fn delete_files(paths: Vec<&std::path::Path>) -> Result<(), FileError> {
+fn delete_files(paths: Vec<&path::Path>) -> Result<(), FileError> {
   for path in paths {
-    std::fs::remove_file(path).map_err(|e| FileError::new(Box::new(e), path))?;
+    fs::remove_file(path).map_err(|e| FileError::new(Box::new(e), path))?;
   }
 
   Ok(())

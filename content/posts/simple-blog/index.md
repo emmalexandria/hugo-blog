@@ -23,7 +23,7 @@ In my view, raw HTML is already very readable. With a few minor tweaks (fonts, m
 
 For some reason, this doesn't seem to be a result of demands of clients or corporate wishes. Instead, developers seem to be leading the charge with ridiculous blogs. They'll smush together NextJS, Tailwind, some kind of CMS, Framer Motion, and a shitload of Javascript to create something they think will impress other people. For some reason the site now has page transitions, there's a floating table of contents to the side of every page, Disqus integration, a complex taxonomy system, etc. I find this complexity maddening as someone trying to read their blog. It appears like as a level of disrespect for my time, energy, and desire to actually comprehend whatever it is that they're saying.
 
-In my view, blogs should attempt to be as visually simple as they can without comprising whatever aesthetic vision the developer has. 
+In my view, blogs should attempt to be as visually simple as they can without comprising whatever aesthetic vision the developer has. Oh, and don't fuck up accessibility. Seriously.
 
 ## The rule of stopping
 
