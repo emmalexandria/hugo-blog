@@ -6,11 +6,15 @@ tags: [Rust, Programming]
 draft: false
 ---
 
+
+
+
 Rust is a language which is evangelised primarily for it's safety. I'm going to be real here. I like writing safe programs, but I don't really care that much. I was never a C or C++ developer. I did follow [javid9x's fantastic tutorials](https://www.youtube.com/@javidx9) when I was younger, but my only real attempt to build something complex in either language was a sudoku solver which never worked because my code for drawing the board kept segfaulting. However, I still really like and appreciate Rust. If you aren't a developer with a particular care for memory safety, I want to try and convince you that Rust is still worth it and a great language to learn. There may sometimes be gaps between the part of the article where code is shown and where it's explained. This article is also very code heavy, so be ready. 
 
 {{<toc>}}
 
 # Clarity
+
 
 The most significant reason I think Rust is great is the sheer productivity boost it bestows on me. Rust is the only programming language in which I can consistently work for 4-5 hours straight without running my project once, and then run it to find everything works perfectly. This is possible in other languages of course, but in Rust it happens so regularly that it's not even exciting anymore. I think this is because Rust doesn't really have many opportunities for subtle bugs. It does not expect you to keep a million things in your head about the standard library and the way Rust works. Instead, everything you need to know about how a given object will behave is easily available and explicitly stated. I saw a Javascript example which I think is perfect to illustrate exactly the kind of thing which never happens in Rust: 
 
