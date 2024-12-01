@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "animejs": "^3.2.2"
+    "animejs": "^3.2.2",
+    "postcss-cli": "^11.0.0"
   }
 }
