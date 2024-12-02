@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/OpenSans-VariableFont_wdth,wght.ttf'), format('truetype');
+
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
+}
