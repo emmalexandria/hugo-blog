@@ -2,8 +2,11 @@
   "dependencies": {
     "animejs": "^3.2.2",
     "autoprefixer": "^10.4.20",
+    "lucide": "^0.462.0",
     "postcss-cli": "^11.0.0",
     "postcss-nesting": "^13.0.1",
-    "tailwindcss": "^3.4.15"
+    "swup": "^4.8.1",
+    "tailwindcss": "^3.4.15",
+    "three": "^0.171.0"
   }
 }

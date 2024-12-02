@@ -4,6 +4,13 @@ title = "Emma Alexandria's Blog"
 theme = "Alexandria"
 copyright = "© Emma Alexandria"
 
+[module]
+[[module.mounts]]
+source = "./node_modules/animejs/lib"
+target = "./assets/js/animejs"
+[[module.mounts]]
+source = "./node_modules/lucide/dist/umd"
+target = "./assets/js/lucide"
 
 [markup]
 [markup.tableOfContents]
