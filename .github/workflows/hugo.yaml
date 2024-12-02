@@ -57,7 +57,9 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"       
+            --baseURL "${{ steps.pages.outputs.base_url }}/" 
+      - name: vite
+        run: "npx vite build"
       - name: gzip
         uses: stefh/ghaction-CompressFiles@v1
         with:
@@ -70,7 +72,7 @@ jobs:
       - name: Upload artifac/
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./dist
 
   # Deployment job
   deploy:
