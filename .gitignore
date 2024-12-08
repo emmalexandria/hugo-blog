@@ -1,2 +1,5 @@
-public
+public/
+dist/
 .vscode
+node_modules/
+resources/_gen/
