@@ -2,7 +2,7 @@
 title: "Rust is nice at programming"
 date: 2024-03-23
 description: "Why Rust is great even if you aren't a giga memory nerd"
-tags: [rust, p  rogramming]
+tags: [rust, programming]
 draft: false
 ---
 
